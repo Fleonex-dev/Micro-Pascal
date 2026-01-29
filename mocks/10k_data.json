@@ -1,0 +1,12 @@
+{
+    "tables": {
+        "data": {
+            "2024": "$5.5B",
+            "2023": "$4.2B"
+        }
+    },
+    "text_chunks": [
+        "The company, ShellCompany_X, is a wholly owned subsidiary of HoldingCompany_Y.",
+        "Management discussion regarding 2024 revenue growth."
+    ]
+}
