@@ -1,5 +1,5 @@
 # Micro-Pascal: Autonomous Financial Analyst
-**Pascal AI Labs | Research Prototype v0.1**
+**Research Prototype v0.1**
 
 ## 🔬 Research Goal
 
