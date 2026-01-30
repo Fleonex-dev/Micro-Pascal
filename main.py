@@ -1,5 +1,15 @@
 from core.infrastructure import SiloManager
 from agent.graph import app
+import logging
+import sys
+
+# Configure structured logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+logger = logging.getLogger(__name__)
 
 def main():
     silo = SiloManager()
@@ -8,7 +18,7 @@ def main():
     with silo.execution_context("hedge_fund_a"):
         query = "Who owns ShellCompany_X and what is the revenue?"
         
-        print(f"\n🚀 Starting Analysis for: {query}\n" + "="*50)
+        logger.info(f"🚀 Starting Analysis for: {query}")
         
         initial_state = {
             "query": query, 
@@ -19,8 +29,7 @@ def main():
         # Run the LangGraph
         result = app.invoke(initial_state)
         
-        print("="*50 + "\n✅ Final Result:\n")
-        print(result["answer"])
+        logger.info("✅ Final Result: %s", result["answer"])
         
         print("\n📜 Compliance Audit Log:")
         for entry in result["audit_log"]:

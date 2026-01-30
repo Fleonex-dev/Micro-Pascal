@@ -2,6 +2,10 @@ from typing import Dict, Any
 import json
 import os
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class DocumentPerception:
     """
     Interface for the 'Eyes' of the system. 
@@ -9,7 +13,7 @@ class DocumentPerception:
     Here, we mock the result to focus on the agentic logic.
     """
     def analyze_document(self, doc_path: str) -> Dict[str, Any]:
-        print(f"👁️ [Perception]: Scanning {doc_path} with Vision Model...")
+        logger.info(f"👁️ [Perception]: Scanning {doc_path} with Vision Model...")
         
         # MOCK: Pretend we parsed a complex table perfectly
         # In a real scenario, we might read the json file, but here we can just return hardcoded data 

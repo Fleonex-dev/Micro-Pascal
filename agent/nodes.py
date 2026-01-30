@@ -3,6 +3,10 @@ from core.knowledge import build_mock_financial_graph
 from core.perception import DocumentPerception
 from typing import Dict, Any
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 # Initialize tools
 # In a real app, these might be injected or initialized in a more robust way
 kg = build_mock_financial_graph()
@@ -10,7 +14,7 @@ perception = DocumentPerception()
 
 def planner_node(state: AnalystState) -> Dict[str, Any]:
     """Decomposes the query into steps."""
-    print("🧠 [Planner]: Analyzing query...")
+    logger.info("🧠 [Planner]: Analyzing query...")
     # Mocking LLM planning logic
     plan = [
         "1. Identify ownership structure of ShellCompany_X",
@@ -22,7 +26,7 @@ def planner_node(state: AnalystState) -> Dict[str, Any]:
 
 def retrieval_node(state: AnalystState) -> Dict[str, Any]:
     """Executes the plan using tools."""
-    print("🕵️: Gathering evidence...")
+    logger.info("🕵️: Gathering evidence...")
     evidence = []
     
     # 1. Query Graph
@@ -41,7 +45,7 @@ def retrieval_node(state: AnalystState) -> Dict[str, Any]:
 
 def reasoning_node(state: AnalystState) -> Dict[str, Any]:
     """Synthesizes the answer."""
-    print("📝: Drafting response...")
+    logger.info("📝: Drafting response...")
     evidence_text = "\n".join(state.get('evidence', []))
     # Mock LLM Synthesis
     # In a real app, we would call an LLM here with the evidence
@@ -50,7 +54,7 @@ def reasoning_node(state: AnalystState) -> Dict[str, Any]:
 
 def audit_node(state: AnalystState) -> Dict[str, Any]:
     """The 'Safety' layer. Checks for hallucinations."""
-    print("🛡️ [Audit]: Verifying citations...")
+    logger.info("🛡️ [Audit]: Verifying citations...")
     
     # Simple check: Does the answer contain numbers found in evidence?
     # Mock logic: We'll just assume it passes for the happy path
